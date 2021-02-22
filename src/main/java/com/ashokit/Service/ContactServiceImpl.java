@@ -1,6 +1,7 @@
 package com.ashokit.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
@@ -21,25 +22,31 @@ public class ContactServiceImpl implements ContactService{
 	public boolean saveContact(Contact contact) {
 		
 		Contact savedContact = contactRepo.save(contact);
-		
-		return false;
+		return savedContact.getContactId()!=null;
 	}
 
 	@Override
 	public List<Contact> getAllContacts() {
 		
-		return null;
+		return contactRepo.findAll();
 	}
 
 	@Override
 	public Contact getContactById(Integer contactId) {
-		
+		Optional<Contact> findById = contactRepo.findById(contactId);
+		if(findById.isPresent()) {
+			return findById.get();
+		}
 		return null;
 	}
 
 	@Override
 	public boolean deleteContactById(Integer contactId) {
-		
+		try{
+			contactRepo.deleteById(contactId);
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
 		return false;
 	}
 

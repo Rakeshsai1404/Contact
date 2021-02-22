@@ -12,7 +12,7 @@ import lombok.Data;
 
 @Repository
 @Entity
-@Data// @Data is used instead of generating setter and getter methods
+//@Data// @Data is used instead of writing setter and getter methods
 public class Contact {
 	
 	@Id
@@ -28,6 +28,38 @@ public class Contact {
 	
 	@Column(name = "CONTACT_NUMBER")
 	private String contactNumber;
+
+	public Integer getContactId() {
+		return contactId;
+	}
+
+	public void setContactId(Integer contactId) {
+		this.contactId = contactId;
+	}
+
+	public String getContactName() {
+		return contactName;
+	}
+
+	public void setContactName(String contactName) {
+		this.contactName = contactName;
+	}
+
+	public String getContactEmail() {
+		return contactEmail;
+	}
+
+	public void setContactEmail(String contactEmail) {
+		this.contactEmail = contactEmail;
+	}
+
+	public String getContactNumber() {
+		return contactNumber;
+	}
+
+	public void setContactNumber(String contactNumber) {
+		this.contactNumber = contactNumber;
+	}
 	
 	
 }
